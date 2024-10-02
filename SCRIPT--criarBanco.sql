@@ -151,14 +151,14 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Registro_Clinico`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Registro_Clinico` (
-  `idRegistro_Clinico` INT NOT NULL AUTO_INCREMENT,
+  `RegistroClinico` INT(10) UNSIGNED NOT NULL,
   `diagnostico` VARCHAR(255) NOT NULL,
   `tratamento` VARCHAR(255) NOT NULL,
   `prescricao` VARCHAR(255) NOT NULL,
   `recomendação` VARCHAR(255) NOT NULL,
   `Paciente_idPaciente` INT NOT NULL,
   `Funcionário_idFuncionário` INT NOT NULL,
-  PRIMARY KEY (`idRegistro_Clinico`, `Paciente_idPaciente`, `Funcionário_idFuncionário`),
+  PRIMARY KEY (`Paciente_idPaciente`, `Funcionário_idFuncionário`),
   INDEX `fk_Registro_Clinico_Paciente1_idx` (`Paciente_idPaciente` ASC) VISIBLE,
   INDEX `fk_Registro_Clinico_Funcionário1_idx` (`Funcionário_idFuncionário` ASC) VISIBLE,
   CONSTRAINT `fk_Registro_Clinico_Paciente1`
@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Servico_externo` (
   `Procedimentos_idProcedimento` INT NOT NULL,
   INDEX `fk_Servico_externo_Lab_Externo1_idx` (`Lab_Externo_Cnpj` ASC) VISIBLE,
   INDEX `fk_Servico_externo_Procedimentos1_idx` (`Procedimentos_idProcedimento` ASC) VISIBLE,
-  PRIMARY KEY (`Lab_Externo_Cnpj`),
+  PRIMARY KEY (`Lab_Externo_Cnpj`, `Procedimentos_idProcedimento`),
   UNIQUE INDEX `protocolo_UNIQUE` (`protocolo` ASC) VISIBLE,
   CONSTRAINT `fk_Servico_externo_Lab_Externo1`
     FOREIGN KEY (`Lab_Externo_Cnpj`)
